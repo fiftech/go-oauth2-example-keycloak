@@ -1,0 +1,22 @@
+---
+version: '3.3'
+services:
+
+  go-oauth2-client:
+    container_name: go-oauth2-client
+    build: .
+    network_mode: host
+    expose:
+      - 9094
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:17.0.1
+    command:
+      - start-dev
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    network_mode: host
+    expose:
+      - 8080
